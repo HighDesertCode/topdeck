@@ -1,0 +1,25 @@
+[project]
+name = "topdeck"
+version = "0.0.1"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pandas==3.0.5",
+    "polars==1.44.1",
+    "psycopg2-binary==2.9.12",
+    "pyarrow==25.0.1",
+    "pydantic==2.13.5",
+    "requests==2.34.2",
+    "sqlalchemy==2.0.52",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==9.1.1",
+    "responses==0.26.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["data/tests"]
+pythonpath = ["data"]
