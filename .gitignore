@@ -26,7 +26,22 @@ go.work.sum
 
 # env file
 .env
+secrets.toml
 
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Claude local instructions
+CLAUDE.md
+
+
+# VS Code Setting
+.vscode/
