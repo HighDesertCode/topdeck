@@ -1,0 +1,39 @@
+{
+  "id": "misc",
+  "name": "Miscellaneous",
+  "firstSet": {
+    "cardCount": {
+      "official": 1,
+      "total": 1
+    },
+    "id": "miscp",
+    "name": "Miscellaneous Promos"
+  },
+  "lastSet": {
+    "cardCount": {
+      "official": 160,
+      "total": 160
+    },
+    "id": "jumbo",
+    "name": "Jumbo cards"
+  },
+  "releaseDate": "1996-01-01",
+  "sets": [
+    {
+      "cardCount": {
+        "official": 1,
+        "total": 1
+      },
+      "id": "miscp",
+      "name": "Miscellaneous Promos"
+    },
+    {
+      "cardCount": {
+        "official": 160,
+        "total": 160
+      },
+      "id": "jumbo",
+      "name": "Jumbo cards"
+    }
+  ]
+}
