@@ -858,7 +858,7 @@ wheels = [
 [[package]]
 name = "topdeck"
 version = "0.0.1"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "azure-identity" },
     { name = "azure-keyvault-secrets" },

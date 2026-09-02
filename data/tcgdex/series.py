@@ -4,7 +4,7 @@ import time
 import polars as pl
 from pydantic import BaseModel
 
-from secrets_retriever import fetch_secret
+from common.secrets_retriever import fetch_secret
 from tcgdex.client import fetch_json
 
 BASE_URL = "/v2/en/series"

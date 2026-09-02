@@ -24,4 +24,14 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["data/tests"]
-pythonpath = ["data"]
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["data/tcgdex", "data/common"]
+
+[project.scripts]
+series-pipeline = "tcgdex.series:main"
