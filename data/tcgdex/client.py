@@ -17,18 +17,25 @@ HEADERS = {
 
 TIMEOUT = (5, 45)
 
+_current_host = 0
+
 
 def fetch_json(path: str) -> dict:
-    # Only network-level failures fail over to the next host. HTTP errors
-    # (4xx/5xx) raise immediately: a healthy host saying "bad request" or
-    # "not found" won't answer differently on a mirror.
+    global _current_host
+
     last_error: requests.RequestException | None = None
 
-    for host in API_HOSTS:
+    # Only unreachable hosts fail over; HTTP errors raise immediately.
+    for offset in range(len(API_HOSTS)):
+        i = (_current_host + offset) % len(API_HOSTS)
+
         try:
-            r = requests.get(f"{host}{path}", timeout=TIMEOUT, headers=HEADERS)
+            r = requests.get(f"{API_HOSTS[i]}{path}", timeout=TIMEOUT, headers=HEADERS)
             r.raise_for_status()
+            _current_host = i
+
             return r.json()
+        
         except (requests.ConnectionError, requests.Timeout) as e:
             last_error = e
 
