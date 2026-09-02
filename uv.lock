@@ -879,8 +879,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "azure-identity", specifier = ">=1.25.3" },
-    { name = "azure-keyvault-secrets", specifier = ">=4.11.2" },
+    { name = "azure-identity", specifier = "==1.25.3" },
+    { name = "azure-keyvault-secrets", specifier = "==4.11.2" },
     { name = "pandas", specifier = "==3.0.5" },
     { name = "polars", specifier = "==1.44.1" },
     { name = "psycopg2-binary", specifier = "==2.9.12" },
