@@ -5,8 +5,7 @@ import polars as pl
 from pydantic import AliasPath, BaseModel, Field
 
 from common.secrets_retriever import fetch_secret
-from tcgdex.client import fetch_json
-from tcgdex.series import SERIES_IDS
+from tcgdex.client import SERIES_IDS, fetch_json
 
 SERIES_PATH = "/v2/en/series"
 SETS_PATH = "/v2/en/sets"
