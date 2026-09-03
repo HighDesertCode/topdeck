@@ -119,6 +119,7 @@ def main() -> None:
         card_ids = [card["id"] for card in set_detail["cards"]]
 
         rows = []
+        set_failures = []
 
         for card_id in card_ids:
             time.sleep(FETCH_DELAY)
@@ -126,7 +127,18 @@ def main() -> None:
             try:
                 rows.append(validate_data(f"{CARDS_PATH}/{card_id}"))
             except (requests.RequestException, ValidationError) as e:
-                failures.append((card_id, type(e).__name__))
+                set_failures.append((card_id, type(e).__name__))
+
+        # Partial sets are never persisted: a setId present in raw.cards
+        # means the set is complete, so a failed set retries in full on the
+        # next run instead of leaving a permanent silent gap.
+        if set_failures:
+            failures.extend(set_failures)
+            print(
+                f"[{i}/{len(missing)}] {set_id}: {len(set_failures)} of "
+                f"{len(card_ids)} failed — set skipped, retries next run"
+            )
+            continue
 
         if rows:
             upload_table(create_table(rows), db_conn)
