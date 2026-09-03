@@ -36,3 +36,4 @@ packages = ["data/tcgdex", "data/common"]
 [project.scripts]
 series-pipeline = "tcgdex.series:main"
 sets-pipeline = "tcgdex.sets:main"
+cards-pipeline = "tcgdex.cards:main"
