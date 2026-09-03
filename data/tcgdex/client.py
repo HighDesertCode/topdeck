@@ -1,5 +1,7 @@
 import requests
 
+SERIES_IDS = ("swsh", "sv", "me")
+
 API_HOSTS = (
     "https://api.tcgdex.net",
     "https://api.na1.tcgdex.net",

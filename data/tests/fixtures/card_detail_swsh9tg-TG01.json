@@ -1,0 +1,111 @@
+{
+  "category": "Pokemon",
+  "id": "swsh9tg-TG01",
+  "illustrator": "You Iribi",
+  "localId": "TG01",
+  "name": "Flareon",
+  "rarity": "Rare",
+  "set": {
+    "cardCount": {
+      "official": 30,
+      "total": 30
+    },
+    "id": "swsh9tg",
+    "name": "Brilliant Stars Trainer Gallery"
+  },
+  "variants": {
+    "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
+    "wPromo": false
+  },
+  "variants_detailed": [
+    {
+      "type": "holo",
+      "size": "standard",
+      "variantId": "jr7oetx1mqug9",
+      "pricing": {
+        "cardmarket": {
+          "updated": "2026-09-02T15:44:48.786Z",
+          "unit": "EUR",
+          "idProduct": 608733,
+          "avg": 21.96,
+          "low": 4.99,
+          "trend": 18.84,
+          "avg1": 20.07,
+          "avg7": 19.41,
+          "avg30": 19.63,
+          "avg-holo": null,
+          "low-holo": null,
+          "trend-holo": 0,
+          "avg1-holo": null,
+          "avg7-holo": null,
+          "avg30-holo": null
+        },
+        "tcgplayer": null
+      }
+    }
+  ],
+  "dexId": [
+    136
+  ],
+  "hp": 110,
+  "types": [
+    "Fire"
+  ],
+  "evolveFrom": "Eevee",
+  "description": "Once it has stored up enough heat, this Pok\u00e9mon's body temperature can reach up to 1,700 degrees Fahrenheit.",
+  "stage": "Stage1",
+  "abilities": [
+    {
+      "type": "Ability",
+      "name": "Incandescent Awakening",
+      "effect": "If this Pok\u00e9mon has a Memory Capsule attached, Grass Pok\u00e9mon in play (both yours and your opponent's) have no Abilities."
+    }
+  ],
+  "attacks": [
+    {
+      "cost": [
+        "Fire",
+        "Fire",
+        "Colorless"
+      ],
+      "name": "Fire Mane",
+      "damage": 100
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "\u00d72"
+    }
+  ],
+  "retreat": 2,
+  "regulationMark": "D",
+  "legal": {
+    "standard": false,
+    "expanded": true
+  },
+  "updated": "2026-08-20T01:40:12+01:00",
+  "pricing": {
+    "cardmarket": {
+      "updated": "2026-09-02T15:44:48.786Z",
+      "unit": "EUR",
+      "idProduct": 608733,
+      "avg": 21.96,
+      "low": 4.99,
+      "trend": 18.84,
+      "avg1": 20.07,
+      "avg7": 19.41,
+      "avg30": 19.63,
+      "avg-holo": null,
+      "low-holo": null,
+      "trend-holo": 0,
+      "avg1-holo": null,
+      "avg7-holo": null,
+      "avg30-holo": null
+    },
+    "tcgplayer": null
+  }
+}

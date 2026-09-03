@@ -1,0 +1,139 @@
+{
+  "category": "Pokemon",
+  "id": "sv03.5-199",
+  "illustrator": "miki kudo",
+  "image": "https://assets.tcgdex.net/en/sv/sv03.5/199",
+  "localId": "199",
+  "name": "Charizard ex",
+  "rarity": "Special illustration rare",
+  "set": {
+    "cardCount": {
+      "official": 165,
+      "total": 207
+    },
+    "id": "sv03.5",
+    "logo": "https://assets.tcgdex.net/en/sv/sv03.5/logo",
+    "name": "151",
+    "symbol": "https://assets.tcgdex.net/univ/sv/sv03.5/symbol"
+  },
+  "variants": {
+    "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
+    "wPromo": false
+  },
+  "variants_detailed": [
+    {
+      "type": "holo",
+      "size": "standard",
+      "variantId": "jr7oetx1mqug9",
+      "pricing": {
+        "cardmarket": {
+          "updated": "2026-09-02T15:44:48.922Z",
+          "unit": "EUR",
+          "idProduct": 733794,
+          "avg": 384.7,
+          "low": 220,
+          "trend": 305.09,
+          "avg1": 350.66,
+          "avg7": 334.48,
+          "avg30": 377.37,
+          "avg-holo": null,
+          "low-holo": null,
+          "trend-holo": 0,
+          "avg1-holo": null,
+          "avg7-holo": null,
+          "avg30-holo": null
+        },
+        "tcgplayer": {
+          "unit": "USD",
+          "updated": "2026-09-02T15:45:06.921Z",
+          "holofoil": {
+            "productId": 517045,
+            "lowPrice": 300,
+            "midPrice": 399.99,
+            "highPrice": 10000,
+            "marketPrice": 364.08,
+            "directLowPrice": 318.5
+          }
+        }
+      }
+    }
+  ],
+  "dexId": [
+    6
+  ],
+  "hp": 330,
+  "types": [
+    "Fire"
+  ],
+  "evolveFrom": "Charmeleon",
+  "stage": "Stage2",
+  "suffix": "ex",
+  "attacks": [
+    {
+      "cost": [
+        "Fire"
+      ],
+      "name": "Brave Wing",
+      "effect": "If this Pok\u00e9mon has any damage counters on it, this attack does 100 more damage.",
+      "damage": "60+"
+    },
+    {
+      "cost": [
+        "Fire",
+        "Fire",
+        "Fire",
+        "Fire"
+      ],
+      "name": "Explosive Vortex",
+      "effect": "Discard 3 Energy from this Pok\u00e9mon.",
+      "damage": 330
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "\u00d72"
+    }
+  ],
+  "retreat": 2,
+  "regulationMark": "G",
+  "legal": {
+    "standard": false,
+    "expanded": true
+  },
+  "updated": "2026-06-09T12:54:48+01:00",
+  "pricing": {
+    "cardmarket": {
+      "updated": "2026-09-02T15:44:48.922Z",
+      "unit": "EUR",
+      "idProduct": 733794,
+      "avg": 384.7,
+      "low": 220,
+      "trend": 305.09,
+      "avg1": 350.66,
+      "avg7": 334.48,
+      "avg30": 377.37,
+      "avg-holo": null,
+      "low-holo": null,
+      "trend-holo": 0,
+      "avg1-holo": null,
+      "avg7-holo": null,
+      "avg30-holo": null
+    },
+    "tcgplayer": {
+      "unit": "USD",
+      "updated": "2026-09-02T15:45:06.921Z",
+      "holofoil": {
+        "productId": 517045,
+        "lowPrice": 300,
+        "midPrice": 399.99,
+        "highPrice": 10000,
+        "marketPrice": 364.08,
+        "directLowPrice": 318.5
+      }
+    }
+  }
+}
