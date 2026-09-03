@@ -64,6 +64,7 @@ def upload_table(df: pl.DataFrame) -> None:
         table_name="raw.sets",
         connection=db_conn,
         if_table_exists="replace",
+        engine="adbc",
     )
 
 

@@ -4,7 +4,6 @@ import time
 import polars as pl
 import requests
 from pydantic import AliasPath, BaseModel, Field, ValidationError, model_validator
-from sqlalchemy import create_engine
 
 from common.secrets_retriever import fetch_secret
 from tcgdex.client import SERIES_IDS, fetch_json
@@ -44,15 +43,22 @@ class CardData(BaseModel):
         return data
 
 
+def table_exists(db_conn: str) -> bool:
+    # ::text because ADBC cannot map the regclass type to Arrow.
+    result = pl.read_database_uri(
+        "SELECT to_regclass('raw.cards')::text AS cards_table", db_conn, engine="adbc"
+    )
+
+    return result["cards_table"][0] is not None
+
+
 def fetch_loaded_set_ids(db_conn: str) -> set[str]:
-    engine = create_engine(db_conn)
-
-    exists = pl.read_database("SELECT to_regclass('raw.cards') AS cards_table", engine)
-
-    if exists["cards_table"][0] is None:
+    if not table_exists(db_conn):
         return set()
 
-    loaded = pl.read_database('SELECT DISTINCT "setId" FROM raw.cards', engine)
+    loaded = pl.read_database_uri(
+        'SELECT DISTINCT "setId" FROM raw.cards', db_conn, engine="adbc"
+    )
 
     return set(loaded["setId"].to_list())
 
@@ -84,10 +90,13 @@ def create_table(data: list[dict]) -> pl.DataFrame:
 
 
 def upload_table(df: pl.DataFrame, db_conn: str) -> None:
+    # raw.cards is created by hand (see the Topdeck note's DDL): ADBC's
+    # append mode cannot create tables, and explicit DDL gives it a PK.
     df.write_database(
         table_name="raw.cards",
         connection=db_conn,
         if_table_exists="append",
+        engine="adbc",
     )
 
 
