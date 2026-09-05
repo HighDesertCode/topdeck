@@ -32,6 +32,9 @@ secrets.toml
 # .idea/
 # .vscode/
 
+# dbt runtime output (written relative to invocation dir)
+logs/
+
 # Python
 .venv/
 __pycache__/

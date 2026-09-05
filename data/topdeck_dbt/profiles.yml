@@ -1,0 +1,16 @@
+# In-repo profile (dbt reads this before ~/.dbt/profiles.yml). No secrets:
+# connection details come from env vars, exported by the dbt runner after
+# fetching the DSN from Azure Key Vault.
+topdeck:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('TOPDECK_DB_HOST') }}"
+      port: 5432
+      user: "{{ env_var('TOPDECK_DB_USER') }}"
+      pass: "{{ env_var('TOPDECK_DB_PASSWORD') }}"
+      dbname: "{{ env_var('TOPDECK_DB_NAME', 'topdeck') }}"
+      schema: core
+      threads: 4
+      sslmode: require
