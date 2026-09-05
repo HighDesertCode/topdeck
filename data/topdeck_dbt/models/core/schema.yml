@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: card_legality
+    description: >
+      One row per (card, era window) in which the card was Standard-legal.
+      card_id is intentionally NOT unique — the grain is card × era, so a
+      card legal across three windows appears three times. Legality derives
+      from card-level regulation marks joined to regulation_eras; null-mark
+      energies are legal in every era, other null-mark cards drop out.
+    columns:
+      - name: card_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_cards')
+                field: id
+      - name: set_id
+        tests:
+          - not_null
+      - name: season
+        tests:
+          - not_null
+      - name: begin_date
+        tests:
+          - not_null
+
+seeds:
+  - name: regulation_eras
+    description: >
+      Hand-maintained format windows, split at rotation and season
+      boundaries. Rotation day: fill the open end_date, append a row.
+      end_date is null only on the current era.
+    columns:
+      - name: begin_date
+        tests:
+          - unique
+          - not_null
+      - name: legal_marks
+        description: Comma-separated regulation marks, no spaces (e.g. H,I,J).
+        tests:
+          - not_null
+      - name: season
+        tests:
+          - not_null

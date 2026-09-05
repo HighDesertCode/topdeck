@@ -24,3 +24,7 @@ models:
 seeds:
   topdeck_dbt:
     +schema: core
+    regulation_eras:
+      +column_types:
+        begin_date: date
+        end_date: date
