@@ -5,7 +5,7 @@ SELECT
     name,
     category,
     rarity,
-    "regulationMark" AS regulation_mark,
+    UPPER("regulationMark") AS regulation_mark,
     "tcgplayerProductId" AS tcgplayer_product_id
 FROM
     {{ source('raw', 'cards') }}
