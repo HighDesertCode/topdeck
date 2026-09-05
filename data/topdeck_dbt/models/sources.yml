@@ -1,0 +1,75 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      Landing schema owned by the Python pipelines (uv run *-pipeline).
+      dbt reads these tables and never writes them. Column names are
+      camelCase (matching the tcgdex API) and require quoting.
+    database: topdeck
+    schema: raw
+    tables:
+      - name: series
+        description: >
+          One row per tcgdex series in scope (SERIES_IDS in client.py).
+          Fully replaced on every pipeline run.
+        columns:
+          - name: id
+            description: tcgdex series id (e.g. swsh, sv, me)
+            tests:
+              - unique
+              - not_null
+
+      - name: sets
+        description: >
+          One row per set across the in-scope series. Fully replaced on
+          every pipeline run. cardCountTotal is upstream metadata and does
+          not always match the number of cards tcgdex actually lists —
+          never test card counts against it.
+        columns:
+          - name: id
+            description: tcgdex set id (e.g. sv01, swsh9tg)
+            tests:
+              - unique
+              - not_null
+          - name: serieId
+            quote: true
+            description: FK to raw.series.id
+            tests:
+              - not_null
+          - name: abbreviationOfficial
+            quote: true
+            description: >
+              PTCGO/PTCGL set code (e.g. SVI, MEG) — the join key for
+              pokedata decklist resolution.
+
+      - name: cards
+        description: >
+          One row per card printing, appended set-by-set (a setId present
+          here means the set loaded completely). payload holds the full
+          tcgdex JSON response as text; cast payload::jsonb to extract
+          fields not flattened into columns.
+        columns:
+          - name: id
+            description: tcgdex card id ({setId}-{localId})
+            tests:
+              - unique
+              - not_null
+          - name: setId
+            quote: true
+            description: FK to raw.sets.id
+            tests:
+              - not_null
+          - name: regulationMark
+            quote: true
+            description: >
+              Card-level regulation mark (D-J); the ONLY valid basis for
+              legality. Null on some promos/energies. Set-level legal
+              flags in the payload are stale — do not use them.
+          - name: tcgplayerProductId
+            quote: true
+            description: TCGplayer product id — the bridge to tcgcsv prices.
+          - name: payload
+            description: Full tcgdex card JSON (text; cast to jsonb to query).
+            tests:
+              - not_null

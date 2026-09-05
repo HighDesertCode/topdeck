@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: stg_series
+    description: One row per tcgdex series in scope. Renames only.
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: name
+        tests:
+          - not_null
+
+  - name: stg_sets
+    description: >
+      One row per tournament-relevant set. Curation happens here: the WHERE
+      exclusion list is the single source of truth (stg_cards follows it via
+      ref). card_count is upstream metadata — do not test counts against it.
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: series_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_series')
+                field: id
+      - name: set_abbr
+        description: >
+          PTCGO/PTCGL set code — the pokedata decklist join key. swshp is
+          null upstream (likely PR-SW; verify against pokedata decklists
+          before mapping it in this model).
+        tests:
+          - unique
+          - not_null:
+              config:
+                severity: warn
+      - name: release_date
+        tests:
+          - not_null
+
+  - name: stg_cards
+    description: >
+      One row per card printing in curated sets (follows stg_sets' exclusion
+      list). The identity bridge: (set_abbr via stg_sets, local_id) resolves
+      decklist entries; tcgplayer_product_id joins to tcgcsv prices.
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: local_id
+        description: Collector number within the set (string; TG01-style ids exist).
+        tests:
+          - not_null
+      - name: set_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_sets')
+                field: id
+      - name: name
+        tests:
+          - not_null
