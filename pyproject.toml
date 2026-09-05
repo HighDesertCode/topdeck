@@ -37,3 +37,4 @@ packages = ["data/tcgdex", "data/common"]
 series-pipeline = "tcgdex.series:main"
 sets-pipeline = "tcgdex.sets:main"
 cards-pipeline = "tcgdex.cards:main"
+dbt-build = "common.dbt_runner:main"
