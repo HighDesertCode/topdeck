@@ -154,6 +154,7 @@ def main() -> None:
         for card_id, error in failures:
             print(f"  - {card_id} ({error})")
 
+    if failures:
         raise SystemExit(1)
 
 
